@@ -163,4 +163,91 @@ sid ``apt-get install bison cmake doxygen flex git graphviz grass-dev libexpat1-
 (extracted from the control.in file in debian/)
 
 
+Setup ccache (Optional)
+.......................
+
+You should also setup ccache to speed up compile times::
+
+  cd /usr/local/bin
+  sudo ln -s /usr/bin/ccache gcc
+  sudo ln -s /usr/bin/ccache g++
+
+
+Prepare your development environment
+....................................
+
+As a convention I do all my development work in $HOME/dev/<language>, so in
+this case we will create a work environment for C++ development work like
+this::
+
+  mkdir -p ${HOME}/dev/cpp
+  cd ${HOME}/dev/cpp
+
+This directory path will be assumed for all instructions that follow.
+
+
+Check out the QGIS Source Code
+..............................
+
+There are two ways the source can be checked out. Use the anonymous method
+if you do not have edit privileges for the QGIS source repository, or use
+the developer checkout if you have permissions to commit source code changes.
+
+1. Anonymous Checkout::
+
+  cd ${HOME}/dev/cpp
+  git clone git://github.com/qgis/QGIS.git
+
+2. Developer Checkout::
+
+  cd ${HOME}/dev/cpp
+  git clone git@github.com:qgis/QGIS.git
+
+
+Starting the compile
+....................
+
+I compile my development version of QGIS into my ~/apps directory to avoid
+conflicts with Ubuntu packages that may be under /usr. This way for example
+you can use the binary packages of QGIS on your system along side with your
+development version. I suggest you do something similar::
+
+  mkdir -p ${HOME}/apps
+
+Now we create a build directory and run ccmake::
+
+  cd QGIS
+  mkdir build-master
+  cd build-master
+  ccmake ..
+
+When you run ccmake (note the .. is required!), a menu will appear where
+you can configure various aspects of the build. If you want QGIS to have
+debugging capabilities then set CMAKE_BUILD_TYPE to Debug. If you do not have
+root access or do not want to overwrite existing QGIS installs (by your
+packagemanager for example), set the CMAKE_INSTALL_PREFIX to somewhere you
+have write access to (I usually use ${HOME}/apps). Now press
+'c' to configure, 'e' to dismiss any error messages that may appear.
+and 'g' to generate the make files. Note that sometimes 'c' needs to
+be pressed several times before the 'g' option becomes available.
+After the 'g' generation is complete, press 'q' to exit the ccmake
+interactive dialog.
+
+Now on with the build::
+
+  make
+  make install
+
+It may take a little while to build depending on your platform.
+
+After that you can try to run QGIS::
+
+  $HOME/apps/bin/qgis
+
+If all has worked properly the QGIS application should start up and appear
+on your screen.  If you get the error message "error while loading shared libraries",
+execute this command in your shell::
+
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${HOME}/apps/lib/
+
 
