@@ -734,6 +734,6 @@ Download from here:
 
   http://puzzle.dl.sourceforge.net/sourceforge/mingw/MSYS-1.0.11-2004.04.30-1.exe
 
-Install to c:\msys
+Install to ``c:\msys``
 
 All stuff we're going to compile is going to get to this directory (resp. its subdirs).
