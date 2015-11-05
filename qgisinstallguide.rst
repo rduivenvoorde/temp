@@ -487,3 +487,126 @@ look at:
 ms-windows/osgeo4w/package.cmd
 
 
+Building using MinGW
+....................
+
+Note: This section might be outdated as nowadays Visual C++ is use to build
+the "official" packages.
+
+Note: For a detailed account of building all the dependencies yourself you
+can visit Marco Pasetti's website here:
+
+http://www.webalice.it/marco.pasetti/qgis+grass/BuildFromSource.html
+
+Read on to use the simplified approach with pre-built libraries...
+
+MSYS
+~~~~
+
+MSYS provides a unix style build environment under windows. We have created a
+zip archive that contains just about all dependencies.
+
+Get this: 
+
+http://download.osgeo.org/qgis/win32/msys.zip
+
+and unpack to c:\msys
+
+If you wish to prepare your msys environment yourself rather than using 
+our pre-made one, detailed instructions are provided elsewhere in this
+document.
+
+
+Qt library
+~~~~~~~~~~
+
+Download Qt opensource precompiled edition exe and install (including the
+download and install of mingw) from here:
+
+http://qt.nokia.com/downloads/
+
+When the installer will ask for MinGW, you don't need to download and install
+it, just point the installer to c:\msys\mingw
+
+When Qt installation is complete:
+
+Edit C:\Qt\4.8.0\bin\qtvars.bat and add the following lines::
+
+  set PATH=%PATH%;C:\msys\local\bin;c:\msys\local\lib 
+  set PATH=%PATH%;"C:\Program Files\Subversion\bin" 
+
+I suggest you also add C:\Qt\4.8.0\bin\ to your Environment Variables Path in
+the windows system preferences.
+
+If you plan to do some debugging, you'll need to compile debug version of Qt:
+C:\Qt\4.8.0\bin\qtvars.bat compile_debug
+
+Note: there is a problem when compiling debug version of Qt 4.7, the script ends with
+this message  "mingw32-make: *** No rule to make target `debug'.  Stop.". To 
+compile the debug version you have to go out of src directory and execute the
+following command::
+
+  c:\Qt\4.8.0 make
+  
+  
+Flex and Bison
+~~~~~~~~~~~~~~
+
+Get Flex
+http://sourceforge.net/project/showfiles.php?group_id=23617&package_id=16424
+(the zip bin) and extract it into c:\msys\mingw\bin
+
+
+Python stuff (optional)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Follow this section in case you would like to use Python bindings for QGIS.  To
+be able to compile bindings, you need to compile SIP and PyQt4 from sources as
+their installer doesn't include some development files which are necessary.
+
+
+Download and install Python - use Windows installer
+```````````````````````````````````````````````````
+
+(It doesn't matter to what folder you'll install it)
+
+http://python.org/download/
+
+
+Download SIP and PyQt4 sources
+``````````````````````````````
+
+http://www.riverbankcomputing.com/software/sip/download
+http://www.riverbankcomputing.com/software/pyqt/download
+
+Extract each of the above zip files in a temporary directory. Make sure
+to get versions that match your current Qt installed version.
+
+
+Compile SIP
+```````````
+::
+
+  c:\Qt\4.8.0\bin\qtvars.bat 
+  python configure.py -p win32-g++ 
+  make 
+  make install 
+
+
+Compile PyQt
+~~~~~~~~~~~~
+
+::
+
+  c:\Qt\4.8.0\bin\qtvars.bat 
+  python configure.py 
+  make 
+  make install 
+
+
+Final python notes
+``````````````````
+
+/!\ You can delete the directories with unpacked SIP and PyQt4 sources after a
+successfull install, they're not needed anymore.
+
