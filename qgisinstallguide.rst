@@ -290,3 +290,29 @@ Install them using dpkg.  E.g.::
   sudo debi
 
 
+Building on Windows
+-------------------
+
+
+Building with Microsoft Visual Studio
+.....................................
+
+This section describes how to build QGIS using Visual Studio on Windows.  This
+is currently also how the binary QGIS packages are made (earlier versions used
+MinGW).
+
+This section describes the setup required to allow Visual Studio to be used to
+build QGIS. 
+
+
+Visual C++ Express Edition
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The free (as in free beer) Express Edition installer is available under:
+
+  http://download.microsoft.com/download/c/d/7/cd7d4dfb-5290-4cc7-9f85-ab9e3c9af796/vc_web.exe
+
+You also need the Windows SDK for Windows 7 and .NET Framework 4:
+
+  http://download.microsoft.com/download/A/6/A/A6AC035D-DA3F-4F0C-ADA4-37C8E5D34E3D/winsdk_web.exe
+
