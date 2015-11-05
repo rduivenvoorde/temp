@@ -723,7 +723,6 @@ Creation of MSYS environment for compilation of QGIS
 Initial setup
 ~~~~~~~~~~~~~
 
-
 MSYS
 ````
 
