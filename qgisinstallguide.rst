@@ -732,7 +732,7 @@ by many dependencies to be able to compile.
 
 Download from here:
 
-  http://puzzle.dl.sourceforge.net/sourceforge/mingw/MSYS-1.0.11-2004.04.30-1.exe
+http://puzzle.dl.sourceforge.net/sourceforge/mingw/MSYS-1.0.11-2004.04.30-1.exe
 
 Install to ``c:\msys``
 
