@@ -610,3 +610,87 @@ Final python notes
 /!\ You can delete the directories with unpacked SIP and PyQt4 sources after a
 successfull install, they're not needed anymore.
 
+
+git
+~~~
+
+In order to check out QGIS sources from the repository, you need a git client.
+This installer should work fine:
+
+http://msysgit.googlecode.com/files/Git-1.7.4-preview20110204.exe
+
+
+CMake
+~~~~~
+
+CMake is build system used by QGIS. Download it from here:
+
+http://www.cmake.org/files/v2.8/cmake-2.8.2-win32-x86.exe
+
+
+QGIS
+~~~~
+
+Start a cmd.exe window ( Start -> Run -> cmd.exe ) Create development 
+directory and move into it::
+
+  md c:\dev\cpp 
+  cd c:\dev\cpp 
+
+Check out sources from GIT::
+
+  git clone git://github.com/qgis/QGIS.git
+
+
+Compiling
+~~~~~~~~~
+
+As a background read the generic building with CMake notes at the end of 
+this document.
+
+Start a cmd.exe window ( Start -> Run -> cmd.exe ) if you don't have one
+already.  Add paths to compiler and our MSYS environment::
+
+  c:\Qt\4.8.0\bin\qtvars.bat 
+
+For ease of use add c:\Qt\4.8.0\bin\ to your system path in system
+properties so you can just type qtvars.bat when you open the cmd console.
+Create build directory and set it as current directory::
+
+  cd c:\dev\cpp\qgis 
+  md build 
+  cd build 
+
+
+Configuration
+~~~~~~~~~~~~~
+
+::
+
+  cmakesetup ..  
+
+Note: You MUST include the '..' above.
+
+Click 'Configure' button.  When asked, you should choose 'MinGW Makefiles' as
+generator.
+
+There's a problem with MinGW Makefiles on Win2K. If you're compiling on this
+platform, use 'MSYS Makefiles' generator instead.
+
+All dependencies should be picked up automatically, if you have set up the
+Paths correctly. The only thing you need to change is the installation
+destination (CMAKE_INSTALL_PREFIX) and/or set 'Debug'.
+
+For compatibility with NSIS packaging scripts I recommend to leave the install
+prefix to its default c:\program files\
+
+When configuration is done, click 'OK' to exit the setup utility.
+
+
+Compilation and installation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+   make make install 
+
