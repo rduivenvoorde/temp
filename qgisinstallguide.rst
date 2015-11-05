@@ -694,3 +694,46 @@ Compilation and installation
 
    make make install 
 
+
+Run qgis.exe from the directory where it's installed (CMAKE_INSTALL_PREFIX)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure to copy all .dll:s needed to the same directory as the qgis.exe
+binary is installed to, if not already done so, otherwise QGIS will complain
+about missing libraries when started.
+
+A possibility is to run qgis.exe when your path contains c:\msys\local\bin and
+c:\msys\local\lib directories, so the DLLs will be used from that place.
+
+
+Create the installation package: (optional)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Download and install NSIS from (http://nsis.sourceforge.net/Main_Page)
+
+Now using windows explorer, enter the win_build directory in your QGIS source
+tree. Read the READMEfile there and follow the instructions. Next right click
+on qgis.nsi and choose the option 'Compile NSIS Script'. 
+
+
+Creation of MSYS environment for compilation of QGIS
+....................................................
+
+
+Initial setup
+~~~~~~~~~~~~~
+
+
+MSYS
+````
+
+This is the environment that supplies many utilities from UNIX world in Windows and is needed
+by many dependencies to be able to compile.
+
+Download from here:
+
+  http://puzzle.dl.sourceforge.net/sourceforge/mingw/MSYS-1.0.11-2004.04.30-1.exe
+
+Install to c:\msys
+
+All stuff we're going to compile is going to get to this directory (resp. its subdirs).
