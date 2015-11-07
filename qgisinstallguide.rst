@@ -7,7 +7,7 @@ Installing and Compiling QGIS
 
 
 Introduction
-------------
+............
 
 
 This document is the original installation guide of the described software 
