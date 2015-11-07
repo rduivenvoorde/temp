@@ -1,6 +1,6 @@
 
 Installing and Compiling QGIS
-=============================
+
 
 .. contents::
    :local:
